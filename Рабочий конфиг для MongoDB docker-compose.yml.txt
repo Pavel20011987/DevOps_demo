@@ -1,0 +1,21 @@
+version: '3.0'
+services:
+ mongodb:
+  image : mongo
+  container_name: container1
+  environment:
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+# volumes:
+ # - /home/ivanovpavel/mongodb/database:/data/db
+  volumes:
+      - ./.docker/mongodb/mongod.conf:/etc/mongod.conf
+      - ./.docker/mongodb/initdb.d/:/docker-entrypoint-initdb.d/
+      - ./.docker/mongodb/data/db/:/data/db/
+      - ./.docker/mongodb/data/log/:/var/log/mongodb/
+# ports:
+#  - 27017:27017
+  ports:
+      - "27017:27017"
+  restart: unless-stopped

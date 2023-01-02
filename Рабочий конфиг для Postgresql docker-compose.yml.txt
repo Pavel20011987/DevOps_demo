@@ -1,0 +1,59 @@
+#version: '3.0'
+#service:
+#  postgres:
+#   image: 'postgres: latest'
+#  ports:
+#   - "5432:5432" 
+#version: '3.0'
+
+#services:
+
+#  db:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_PASSWORD: example
+
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - 5432:5432
+version: '3.0'
+services:
+ postgres:
+  image : postgres
+  container_name: container2
+  environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=postgress
+       - POSTGRES_DB=postgres
+
+
+# volumes:
+ # - /home/ivanovpavel/mongodb/database:/data/db
+  volumes:
+
+      - ./postgres-data:/var/lib/postgresql/data
+# ports:
+#  - 27017:27017
+  ports:
+      - "5432:5432"
+  restart: always
+
+# version: '3.0'
+#   services:
+#     db:
+#       image: postgres
+#       environment:
+#         - POSTGRES_USER=postgres
+#         - POSTGRES_PASSWORD=postgress
+#         - POSTGRES_DB=postgres
+#       ports:
+#         - "5432:5432"
+#       volumes:
+#         - pgdata:/var/lib/postgresql/data
+#       networks:
+#         - suruse
+#   volumes: 
+#     pgdata:
